@@ -7,10 +7,10 @@ import java.util.Optional;
 public interface GenericService <T extends BaseModel<ID>,ID extends Number>{
     void save(T t);
 
-    Boolean update(T t);
+    void update(T t);
 
-    Boolean remove(ID id);
+    void remove(ID id);
 
-    Optional<T> findByID(ID id);
+    void findByID(ID id);
 
 }
