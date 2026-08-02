@@ -11,6 +11,6 @@ public interface GenericService <T extends BaseModel<ID>,ID extends Number>{
 
     void remove(ID id);
 
-    void findByID(ID id);
+    boolean findByID(ID id);
 
 }

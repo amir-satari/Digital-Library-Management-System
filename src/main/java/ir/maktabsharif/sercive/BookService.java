@@ -56,17 +56,18 @@ public class BookService implements GenericService<Book ,Long>{
     }
 
     @Override
-    public void findByID(Long aLong) {
+    public boolean findByID(Long aLong) {
         try {
             Optional<Book> book =  bookRepository.findByID(aLong);
             if (book.isEmpty()){
                 System.out.println("Book not found for id");
-                return;
+                return false;
             }
             System.out.println("Book founded => "+book);
+            return true;
         }catch (BookNotFoundExceptio e){
             System.out.println("Book operation find is failed! ");
         }
-
+        return false;
     }
 }

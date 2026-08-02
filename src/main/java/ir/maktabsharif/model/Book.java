@@ -25,12 +25,12 @@ public class Book extends BaseModel<Long> {
     @Embedded
     private PublisherAddress publisherAddress;
 
-    public Book(String title, String ISBN, Integer publicationYear, Double price, Stock stock, PublisherAddress publisherAddress) {
+    public Book(String title, String ISBN, Integer publicationYear, Double price, PublisherAddress publisherAddress) {
         this.title = title;
         this.ISBN = ISBN;
         this.publicationYear = publicationYear;
         this.price = price;
-        this.stock = stock;
+        this.stock = Stock.IN_STOCK;
         this.publisherAddress = publisherAddress;
     }
 

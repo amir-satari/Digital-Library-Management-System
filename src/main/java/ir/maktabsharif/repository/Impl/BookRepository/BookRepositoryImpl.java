@@ -24,8 +24,18 @@ public class BookRepositoryImpl implements BookRepositoryGeneric{
     public Optional<Book> update(Book book) {
         try {
             return Optional.ofNullable(HibernateConnection.InTxReturned(em -> {
-                Book book1 = em.merge(em.find(Book.class,book.getId()));
-                em.merge(book1);
+
+
+                Book book1 =  em.find(Book.class,book.getId());
+
+                book1.setId(book.getId());
+                book1.setTitle(book.getTitle());
+                book1.setPrice(book.getPrice());
+                book1.setISBN(book.getISBN());
+                book1.setPublicationYear(book.getPublicationYear());
+                book1.setPublisherAddress(book.getPublisherAddress());
+                book1.setStock(book.getStock());
+
                 return book1;
             }));
         } catch (Exception e) {

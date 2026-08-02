@@ -17,7 +17,8 @@ public class HibernateConnection {
     }
 
     private static EntityManager getEm(){
-        return emf.createEntityManager();
+        EntityManager em = getEmf().createEntityManager();
+        return em;
     }
 
     public static <T> T InTxReturned(Function<EntityManager,T> operation){
