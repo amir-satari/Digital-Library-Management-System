@@ -4,6 +4,7 @@ import ir.maktabsharif.exception.BookNotFoundExceptio;
 import ir.maktabsharif.exception.BookOperationException;
 import ir.maktabsharif.model.Book;
 import ir.maktabsharif.util.HibernateConnection;
+import org.hibernate.jpa.internal.HintsCollector;
 
 import java.util.Optional;
 
@@ -68,4 +69,35 @@ public class BookRepositoryImpl implements BookRepositoryGeneric{
             throw new BookNotFoundExceptio("Book Not Founded!");
         });
     }
+
+    @Override
+    public boolean Detached(Book book) {
+        try {
+            return HibernateConnection.InTxReturned(em -> {
+                Book book1 = em.find(Book.class,book.getId());
+                if (book1 != null){
+                    em.detach(book);
+                    return true;
+                }
+                return false;
+
+            });
+        } catch (RuntimeException e) {
+            throw new BookNotFoundExceptio("Book Not Founded");
+        }
+
+    }
+
+    @Override
+    public void backDetached(Book book) {
+        try {
+            HibernateConnection.InTxReturned(em ->{
+                return em.merge(book);
+            });
+        } catch (Exception e) {
+            throw new BookOperationException("Book is dont back to detached");
+        }
+    }
+
+
 }

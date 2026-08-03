@@ -14,4 +14,9 @@ public interface GenericRepository <T extends BaseModel<ID>,ID extends Number>{
 
     void delete(ID id);
 
+    boolean Detached(T t);
+
+    void backDetached(T t);
+
+
 }

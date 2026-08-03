@@ -13,4 +13,8 @@ public interface GenericService <T extends BaseModel<ID>,ID extends Number>{
 
     boolean findByID(ID id);
 
+    void Detached(T t);
+
+    void backDetached(T t);
+
 }

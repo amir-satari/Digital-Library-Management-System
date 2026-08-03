@@ -70,4 +70,22 @@ public class BookService implements GenericService<Book ,Long>{
         }
         return false;
     }
+
+    @Override
+    public void Detached(Book book) {
+        try {
+            bookRepository.Detached(book);
+        }catch (BookNotFoundExceptio e){
+            System.out.println("book is docent detached");
+        }
+    }
+
+    @Override
+    public void backDetached(Book book) {
+        try {
+            bookRepository.backDetached(book);
+        }catch (BookOperationException e){
+            System.out.println("Book back to detached is failed!");
+        }
+    }
 }

@@ -14,6 +14,34 @@ public class App {
 
     public static void main(String[] args) {
 
+
+        PublisherAddress publisherAddress = new PublisherAddress("maneaged","detached","cleare");
+        Book book = new Book("entity lifeceycele","test",2026,250.0,publisherAddress);
+        System.out.println("Book in Transient state "+book);
+
+        System.out.println();
+
+        bookService.save(book);
+        System.out.println("book in managed state "+book);
+
+        System.out.println();
+        System.out.println("Book in detached state");
+        bookService.Detached(book);
+        book.setTitle("change");
+        System.out.println(book);
+
+        System.out.println();
+        System.out.println("Book back in detached state");
+        bookService.backDetached(book);
+
+        System.out.println();
+        bookService.remove(book.getId());
+
+
+
+
+
+
         while (true){
             System.out.print("======menu======\n" +
                     "1. create book\n" +
